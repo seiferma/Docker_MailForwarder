@@ -5,7 +5,6 @@ PROBE_INTERVAL=60
 MAX_INTERVAL=$((15*60))
 
 # Internal configuration
-MAX_INTERVAL_MS=$((MAX_INTERVAL*1000))
 LAST_EXEC_FILE=~/.last_execution
 IMAPNOTIFY_CFG_FILE=~/.imapnotify.conf
 MODE=$1
@@ -32,7 +31,7 @@ run_watchdog() {
 	while true; do
 		LAST_EXECUTION=$(cat $LAST_EXEC_FILE)
 		CURRENT_TIME=$(date +"%s")
-		if [ $((CURRENT_TIME-LAST_EXECUTION)) -gt $MAX_INTERVAL_MS ]; then
+		if [ $((CURRENT_TIME-LAST_EXECUTION)) -gt $MAX_INTERVAL ]; then
 			echo "Forcing mail processing because last processing happened more than $MAX_INTERVAL seconds ago."
 			process_mails
 		fi
