@@ -1,0 +1,4 @@
+machine mx.example.org
+login inbox@example.org
+password topsecret
+
